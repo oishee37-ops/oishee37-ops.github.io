@@ -1,0 +1,39 @@
+# TEMPORARY: publishes only the "under construction" page to test GitHub Pages.
+# Remove this file when the real site (deploy.yml) is published.
+name: Pages test (under construction)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'under-construction/**'
+      - '.github/workflows/pages-test.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Upload page
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: under-construction
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
