@@ -20,3 +20,7 @@ npm-debug.log*
 # Camera originals kept beside the web-ready copies by scripts/import-photos.mjs.
 # They are large and can carry GPS location. Never commit them.
 site/public/images/**/_originals/
+
+# Owner's guide and Claude's rules: kept on this computer only (Oishee's choice, 2026-11-08)
+HANDOVER.md
+CLAUDE.md

@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import SeeMore from '../components/SeeMore.astro';
+// Text from Oishee's CV and her approved Handover Report docx. At her request (2026-11-08)
+// the GIZ internship shows only the CV bullets, and the Skills section was removed.
+// Deliberately left out (her instruction): phone number, academic email,
+// GIZ internal systems, and anything from the internship report as a download.
+---
+
+<Base title="Experience">
+  <div class="container page">
+    <div class="prose">
+      <header class="page-head">
+        <span class="section-eyebrow">Experience</span>
+        <h1>Experience</h1>
+      </header>
+
+      <section class="section">
+        <h2>Education</h2>
+        <ul class="entries">
+          <li>
+            <div class="entry-row"><span class="entry-title">MS in Applied Chemistry and Chemical Engineering | CGPA 3.25</span><span class="meta">March 2024 - May 2026</span></div>
+            <p class="entry-detail">University of Dhaka</p>
+            <SeeMore>
+              <p class="entry-detail">Industrial waste management and environmental pollution, energy conversion engineering, biomass and biogas, biochemical engineering, advanced polymer science</p>
+              <p class="entry-detail">Thesis: <strong>Biodegradable Packaging Material</strong> from polymer films with solution casting method.</p>
+            </SeeMore>
+          </li>
+          <li>
+            <div class="entry-row"><span class="entry-title">BSc in Applied Chemistry and Chemical Engineering | CGPA 3.29</span><span class="meta">Jan 2019 – Mar 2024</span></div>
+            <p class="entry-detail">University of Dhaka</p>
+            <SeeMore>
+              <p class="entry-detail">Electrochemical engineering, chemical reaction engineering, water treatment, industrial economics and management, environmental chemistry, computational techniques in chemical engineering.</p>
+              <p class="entry-detail">Final year project: <strong>Transparent Solar Cell</strong> - Studied and reviewed different polymers used for semi-transparent solar cells, their efficiency, and cost-benefit analysis.</p>
+            </SeeMore>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Research Experience</h2>
+        <ul class="entries">
+          <li>
+            <div class="entry-row"><span class="entry-title">Research Fellow, Dhaka University Nanotechnology Centre</span><span class="meta">Feb 2025 – Nov 2025</span></div>
+            <SeeMore>
+              <ul>
+                <li>Developed nanocomposites for lead remediation in water from industrial waste.</li>
+              </ul>
+              <p class="entry-detail">See <a href="/research/lead-remediation/">Cellulose-Graphene Oxide Composite Beads (GOCB) for Lead Remediation</a>.</p>
+            </SeeMore>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Professional Experience</h2>
+        <ul class="entries">
+          <li>
+            <div class="entry-row"><span class="entry-title">Intern, GIZ Bangladesh</span><span class="meta">Feb 2026 – July 2026</span></div>
+            <p class="entry-detail">Green Energy Transition - Policy Advisory Partnership (GET-PAP)</p>
+            <SeeMore>
+              <ul>
+                <li>Provided technical inputs in policy, strategy paper, guidelines, concept note, action plan in the sector of renewable energy and energy efficiency.</li>
+                <li>Maintaining communication with foreign, government and development partners</li>
+                <li>Coordinated stakeholder discussions and workshops on O&amp;M Guidelines for solar projects and Onshore Wind Power Project Development Guidelines – diverse stakeholders including Government and private sector agencies</li>
+                <li>Developed communication content: post-event summaries and event photography</li>
+              </ul>
+            </SeeMore>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Training &amp; Leadership</h2>
+        <SeeMore>
+          <ul class="entries">
+            <li>
+              <div class="entry-row"><span class="entry-title">Shoktikonna Leadership Cohort 2025</span><span class="meta">Aug 2025 - Nov 2025</span></div>
+              <p class="entry-detail">Selected from 1,065 applicants (75 shortlisted); completed 16+ live sessions with global experts, 40+ hrs curated learning (World Bank OLC/EdCast), 25+ hrs Coursera modules; topics: energy audit, adaptive leadership, RE grid integration, carbon markets, unconscious bias</p>
+            </li>
+            <li>
+              <div class="entry-row"><span class="entry-title">Industrial Training, Chittagong Urea Fertilizer Limited (CUFL)</span><span class="meta">February 2025</span></div>
+            </li>
+            <li>
+              <div class="entry-row"><span class="entry-title">Industrial Training, Training Institute for Chemical Industries (TICI)</span><span class="meta">February 2023</span></div>
+            </li>
+          </ul>
+        </SeeMore>
+      </section>
+
+      <section class="section">
+        <h2>Certifications</h2>
+        <SeeMore>
+          <ul>
+            <li>Energy Certificates, RPOs, and Carbon Markets in Bangladesh — GIZ Bangladesh</li>
+            <li>Sustainability Reporting: From Regulation to Implementation — University of Illinois Urbana-Champaign</li>
+            <li>Introduction to Business Analytics: Communicating with Data — University of Illinois Urbana-Champaign</li>
+            <li>Technical Foundations of Energy – Power Systems Planning — World Bank Group</li>
+            <li>Technical Foundations of Energy – Transmission Systems — World Bank Group</li>
+            <li>Leading Teams: Building Effective Team Cultures — University of Illinois Urbana-Champaign</li>
+          </ul>
+        </SeeMore>
+      </section>
+
+      <section class="section">
+        <h2>Awards &amp; Recognition</h2>
+        <SeeMore>
+          <ul>
+            <li>Runner-up, poster presentation — ACS DU Intra-Departmental Poster Presentation (2021)</li>
+            <li>Runner-up, poster presentation — Chemfusion International Chemfest (2022)</li>
+            <li>Selected participant, Shoktikonna Leadership Cohort 2025 (75 of 1,065 applicants)</li>
+          </ul>
+        </SeeMore>
+      </section>
+
+      <section class="section">
+        <h2>Volunteering</h2>
+        <SeeMore>
+          <ul>
+            <li>Technical Secretary, American Chemical Society (ACS) Student Chapter, University of Dhaka (2022–2023)</li>
+          </ul>
+        </SeeMore>
+      </section>
+    </div>
+  </div>
+</Base>

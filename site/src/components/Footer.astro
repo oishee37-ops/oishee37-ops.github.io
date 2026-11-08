@@ -1,0 +1,93 @@
+---
+import ObfuscatedEmail from './ObfuscatedEmail.astro';
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+
+    <div class="reach">
+      <span class="eyebrow">Contact</span>
+      <ul class="link-row">
+        <li class="email-item"><ObfuscatedEmail asLink={false} /></li>
+        <li><a href="https://www.linkedin.com/in/oishee-rahman" target="_blank" rel="noopener" aria-label="LinkedIn" class="icon-link"><i class="fa-brands fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+    <div class="colophon">
+      <p>&copy; {new Date().getFullYear()} Oishee Rahman</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    /* --band stays deep green in dark mode so the white text stays readable */
+    background: var(--band);
+    border-top: 3px solid var(--solar);
+    margin-top: 3rem;
+    padding: 2rem 0 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem 3rem;
+  }
+  .reach {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .eyebrow {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+  .link-row {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.9rem;
+  }
+  .email-item {
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+    user-select: text;
+  }
+  .email-item :global(.obf-email) {
+    font-family: inherit;
+    font-size: inherit;
+    color: #ffffff;
+    overflow-wrap: anywhere;
+  }
+  .icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 4px;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .icon-link:hover { color: #ffffff; }
+  .colophon {
+    margin-left: auto;
+    align-self: flex-end;
+  }
+  .colophon p {
+    margin: 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  @media (max-width: 600px) {
+    .colophon { margin-left: 0; }
+  }
+</style>

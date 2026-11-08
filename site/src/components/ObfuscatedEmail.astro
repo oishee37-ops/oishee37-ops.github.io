@@ -1,0 +1,58 @@
+---
+interface Props {
+  user?: string;
+  domain?: string;
+  label?: string;
+  class?: string;
+  displayUser?: string;
+  /** false = plain, selectable text instead of a mailto link */
+  asLink?: boolean;
+}
+const {
+  user = 'oishee37',
+  domain = 'gmail.com',
+  label = 'Email',
+  class: className = '',
+  displayUser,
+  asLink = true,
+} = Astro.props;
+
+const shown = displayUser ?? user;
+const userB64 = Buffer.from(user).toString('base64');
+const domainB64 = Buffer.from(domain).toString('base64');
+const shownB64 = Buffer.from(shown).toString('base64');
+const id = `oe-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+{!asLink && <span class:list={['obf-email', 'obf-plain', className]}>{shown}@{domain}</span>}
+
+{asLink && <span class:list={['obf-email', className]} data-u={userB64} data-d={domainB64} data-s={shownB64} id={id}>
+  <noscript>{shown}@{domain}</noscript>
+  <span class="obf-fallback">{shown}@{domain}</span>
+</span>}
+
+{asLink && <script define:vars={{ id }}>
+  (() => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const user = atob(el.dataset.u);
+    const domain = atob(el.dataset.d);
+    const shown = atob(el.dataset.s);
+    const fallback = el.querySelector('.obf-fallback');
+    if (fallback) fallback.remove();
+    const a = document.createElement('a');
+    a.href = `mailto:${user}@${domain}`;
+    a.textContent = `${shown}@${domain}`;
+    el.appendChild(a);
+  })();
+</script>}
+
+<style>
+  .obf-email {
+    font-family: var(--label);
+    font-size: 0.9375rem;
+  }
+  .obf-fallback {
+    color: var(--ink-mute);
+  }
+</style>

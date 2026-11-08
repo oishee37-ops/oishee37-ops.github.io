@@ -1,0 +1,46 @@
+---
+// Collapsible details with a "See more / See less" button.
+// Uses the browser's built-in <details>, so it works without JavaScript.
+---
+
+<details class="see-more">
+  <summary><span class="when-closed">See more</span><span class="when-open">See less</span></summary>
+  <div class="see-more-body">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .see-more {
+    margin-top: 0.5rem;
+  }
+  .see-more summary {
+    display: inline-block;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--label);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border: 1.5px solid var(--border);
+    padding: 0.45rem 0.8rem 0.35rem;
+    border-radius: 6px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .see-more summary::-webkit-details-marker { display: none; }
+  .see-more summary:hover,
+  .see-more summary:focus-visible {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .when-open { display: none; }
+  .see-more[open] .when-open { display: inline; }
+  .see-more[open] .when-closed { display: none; }
+  .see-more-body {
+    margin-top: 0.6rem;
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--border);
+  }
+</style>

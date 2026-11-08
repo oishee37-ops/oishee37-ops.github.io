@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oishee37-ops.github.io/sitemap-index.xml

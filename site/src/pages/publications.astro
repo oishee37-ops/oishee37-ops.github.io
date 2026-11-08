@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import SeeMore from '../components/SeeMore.astro';
+
+/**
+ * All text below is copied from Oishee's approved Handover Report docx and CV.
+ * `hold` marks an entry that is not ready for the live site:
+ *   'todo'   – a detail is missing (shown as [TODO: ...]); she will supply it.
+ *   'review' – corrected per her answers; needs her approval of the wording.
+ * Held entries show in the local preview (with a yellow note) and are left
+ * out of the live build. Remove `hold` once she approves the entry.
+ */
+type Entry = {
+  title: string;
+  byline?: string;
+  venue?: string;
+  note?: string;
+  summary?: string;
+  link?: { label: string; href: string };
+  hold?: 'todo' | 'review';
+};
+
+const groups: { heading: string; entries: Entry[] }[] = [
+  {
+    heading: 'Publications',
+    entries: [
+      {
+        title: 'Modification of cotton gauze using Cynodon dactylon (Bermuda grass) and assessment of the chemical and antimicrobial properties',
+        byline: 'Umme Lewara Bristi, Abdur Rahman, Sadit Bihongo Malitha, Oishee Rahman, Sharmin Shoukat et al.',
+        venue: 'Scientific Reports (Nature Publishing Group), Vol. 14, Article 31650, 2024.',
+        link: { label: 'DOI: 10.1038/s41598-024-80318-0', href: 'https://doi.org/10.1038/s41598-024-80318-0' },
+        summary: 'Eco-friendly cotton gauze treated with Bermuda grass extract showed strong antimicrobial activity against S. aureus and negligible skin irritation; proposed as a sustainable medical bandage material.',
+      },
+      {
+        title: 'Crape Myrtle Flower Extract as a Plant-Based Dye for Silk: Performance and Mordant Optimization',
+        // Details from the article link Oishee gave (2026-11-08), confirmed on Crossref.
+        byline: 'Umme Lewara Bristi, Abdur Rahman, Ishrat Jahan, Sadit Bihongo Malitha, Oishee Rahman, Sharmin Shoukat, Alauddin Riyad, Nazmul Haque',
+        venue: 'Results in Materials (Elsevier), Vol. 30, Article 100973, 2026.',
+        link: { label: 'DOI: 10.1016/j.rinma.2026.100973', href: 'https://doi.org/10.1016/j.rinma.2026.100973' },
+        summary: 'Optimised mordanting techniques for applying plant-based dye from Crape Myrtle flowers to silk fabric.',
+      },
+    ],
+  },
+  {
+    heading: 'Presentations',
+    entries: [
+      {
+        title: 'Regulatory Barriers for Agrivoltaics Adoption in Bangladesh: A Policy Gap Analysis',
+        byline: 'Oishee Rahman & Md Abdul Gaffar',
+        venue: 'Agrivoltaics World Conference 2026',
+        // Wording approved by Oishee on 2026-11-08.
+        note: 'Presented at the international conference. Topics: Renewable Energy Policy 2025, Net Metering, land-use governance, food-energy nexus.',
+      },
+      {
+        title: 'Institutional Framework of the Power Sector of Bangladesh',
+        note: 'Presented to the GIZ Bangladesh Energy Cluster.',
+      },
+    ],
+  },
+];
+
+const showHeld = import.meta.env.DEV;
+const visible = groups
+  .map((g) => ({ ...g, entries: g.entries.filter((e) => showHeld || !e.hold) }))
+  .filter((g) => g.entries.length > 0);
+
+const holdLabel = {
+  todo: 'Missing details: hidden on live site',
+  review: 'Corrected wording, needs your OK: hidden on live site',
+};
+---
+
+<Base title="Publications & Presentations">
+  <div class="container page">
+    <div class="prose">
+      <header class="page-head">
+        <span class="section-eyebrow">Publications</span>
+        <h1>Publications &amp; Presentations</h1>
+      </header>
+
+      {visible.map((g) => (
+        <section class="section">
+          <h2>{g.heading}</h2>
+          <ul class="entries">
+            {g.entries.map((e) => (
+              <li>
+                {e.hold && <span class="draft-note">{holdLabel[e.hold]}</span>}
+                <div class="entry-title">{e.title}</div>
+                <SeeMore>
+                    {e.byline && <p class="entry-detail">{e.byline}</p>}
+                    {e.venue && <p class="entry-detail"><em>{e.venue}</em></p>}
+                    {e.note && <p class="entry-detail">{e.note}</p>}
+                    {e.link && <p class="entry-detail"><a href={e.link.href} target="_blank" rel="noopener">{e.link.label}</a></p>}
+                    {e.summary && <p class="entry-detail">{e.summary}</p>}
+                </SeeMore>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </div>
+</Base>
+

@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const showDrafts = import.meta.env.DEV;
+const research = (await getCollection('research', ({ data }) => showDrafts || !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title="Research & Projects">
+  <div class="container page">
+    <div class="prose">
+      <header class="page-head">
+        <span class="section-eyebrow">Research &amp; Projects</span>
+        <h1>Research Projects &amp; Contributions</h1>
+      </header>
+      <ul class="entries">
+        {research.map((p) => (
+          <li>
+            <a class="entry-title" href={`/research/${p.id}/`}>{p.data.title}</a>
+            {p.data.draft && <div><span class="draft-note">Draft: hidden on live site</span></div>}
+            {(p.data.affiliation || p.data.period) && (
+              <p class="entry-detail">{[p.data.affiliation, p.data.period].filter(Boolean).join(' · ')}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Base>

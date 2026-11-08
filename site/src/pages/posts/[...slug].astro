@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const showDrafts = import.meta.env.DEV;
+  const posts = await getCollection('posts', ({ data }) => showDrafts || !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Base title={post.data.title} description={post.data.summary} ogImage={post.data.heroImage}>
+  <div class="container page">
+    <article class="prose">
+      {post.data.draft && <p class="draft-note">Draft: this post is hidden on the live site</p>}
+      <a class="meta back" href="/posts/">← Blog</a>
+      <h1>{post.data.title}</h1>
+      <div class="meta">
+        <time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+      </div>
+      {post.data.heroImage && <img class="hero-img" src={post.data.heroImage} alt="" />}
+      <Content />
+    </article>
+  </div>
+</Base>
+
+<style>
+  .back {
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+  .hero-img {
+    margin: var(--space-3) 0;
+  }
+</style>
