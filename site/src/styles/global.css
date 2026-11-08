@@ -42,8 +42,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --forest:   #4ade80;
-    --leaf:     #6ee7a0;
+    --forest:   #dde4e1;
+    --leaf:     #dde4e1;
     --solar:    #fbbf24;
     --solar-lt: #1c1500;
     --bg:       #111210;
@@ -52,7 +52,7 @@
     --muted:    #9a9a94;
     --border:   #2e3028;
     --tag-bg:   #1e2b22;
-    --tag-fg:   #6ee7a0;
+    --tag-fg:   #dde4e1;
     --band:     #15291f;
   }
 }
