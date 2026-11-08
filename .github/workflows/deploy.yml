@@ -35,7 +35,9 @@ jobs:
           cache-dependency-path: site/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        # Not `npm ci`: the lock file is written on Windows, and npm ci on Linux
+        # rejects it over optional wasm-only packages (@emnapi/*) it never installs.
+        run: npm install --no-audit --no-fund
 
       - name: Build
         run: npm run build
